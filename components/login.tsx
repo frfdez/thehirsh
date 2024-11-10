@@ -26,7 +26,11 @@ export default function Login({ onLogin }: LoginProps = { onLogin: () => {} }) {
     try {
       if (username.trim() && password.trim()) {
         await signInWithEmailAndPassword(auth, username, password)
-        router.push('/dashboard')
+        if (username === 'admin@mail.cl') {
+          router.push('/admin')
+        } else {
+          router.push('/dashboard')
+        }
         onLogin(username)
       }
     } catch (err: any) {
